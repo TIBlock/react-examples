@@ -1,4 +1,4 @@
-const initialState = {
+git staconst initialState = {
   boxes: []
 }
 
@@ -34,4 +34,6 @@ const reducer = (state = initialState, action) => {
   } else if (action.type === 'RANDOMIZE') {
     
   }
+
+  return newState
 }

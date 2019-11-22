@@ -19,7 +19,7 @@ function ColorBox (props, idx, _allBoxes) {
   )
 }
 
-class App extends React.Component {
+class AppWithState extends React.Component {
   state = {
     boxes: [
       this._newBox(),

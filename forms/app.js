@@ -34,7 +34,8 @@ class FruitsFormWithState extends React.Component {
 class MyNameFormWithState extends React.Component {
   state = {
     firstName: "",
-    lastName: ""
+    lastName: "",
+    people:[]
   }
   handleFirstName = (changeEvent) => {
     console.log(changeEvent.target.value)
@@ -42,8 +43,28 @@ class MyNameFormWithState extends React.Component {
       firstName: changeEvent.target.value
     })
   }
+  handleLastName = (changeEvent) => {
+    console.log(changeEvent.target.value)
+    this.setState({
+      lastName: changeEvent.target.value
+    })
+  }
+
+  handleFormSubmit = (submitEvent) => {
+    submitEvent.preventDefault()
+    console.log(this.state)
+    const newPeople = [...this.state.people]
+    newPeople.push({
+      firstName: this.state.firstName,
+      lastName: this.state.lastName
+    })
+    this.setState({
+      people: newPeople
+    })
+  }
   render() {
     return (<div className="container">
+      <form onSubmit ={this.handleFormSubmit}>
       <div className="form-group">
         <label>First Name</label>
         <input type="text" name="first-name"
@@ -52,10 +73,17 @@ class MyNameFormWithState extends React.Component {
       </div>
       <div className="form-group">
         <label>Last Name</label>
-        <input type="text" name="last-name"/>
+        <input type="text" name="last-name"
+        onChange={this.handleLastName}
+        value={this.state.lastName}/>
       </div>
+      <button type="submit">Submit</button>
+        </form>
       <h1>This is the state</h1>
       <pre><code>{JSON.stringify(this.state)}</code></pre>
+        <ul>{this.state.people.map((person, index) => {
+        return(<li key={index}>{person.firstName} {person.lastName}</li>)})}
+        </ul>
     </div>)
   }
 }
