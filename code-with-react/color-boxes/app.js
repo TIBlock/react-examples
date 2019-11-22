@@ -19,7 +19,7 @@ function ColorBox (props, idx, _allBoxes) {
   )
 }
 
-class AppWithState extends React.Component {
+class App extends React.Component {
   state = {
     boxes: [
       this._newBox(),
@@ -78,16 +78,14 @@ class AppWithState extends React.Component {
     return (
       <div className="container">
           <div className="text-center">
-              <button>Randomize!</button>
-              <button>Add Box</button>
-              <button>Remove Box</button>
+              <button onClick={() => this.randomize()}>Randomize!</button>
+              <button onClick={() => this.addBox()}>Add Box</button>
+              <button onClick={() => this.removeBox()}>Remove Box</button>
               <div className="d-flex justify-content-center">
-                {/* {boxesWithClickFn.map(ColorBox)} */}
+                {boxesWithClickFn.map(ColorBox)}
               </div>
           </div>
       </div>
     )
   }
 }
-
-ReactDOM.render(<AppWithState />, document.getElementById('root'))
